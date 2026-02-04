@@ -11,12 +11,6 @@ class Server {
 
   createServer() {
     return http.createServer((req, res) => {
-      if (this.shuttingDown) {
-        res.writeHead(503, { 'Content-Type': 'text/plain' });
-        res.end('Server is shutting down');
-        return;
-      }
-
       const { url } = req;
 
       if (url === '/') {
@@ -57,15 +51,11 @@ class Server {
 
       setTimeout(() => {
         console.log(`Shutting down after ${config.SHUTDOWN_DELAY_MS}ms delay...`);
-        
+
         this.server.close(() => {
           console.log('Server closed');
           process.exit(0);
         });
-
-        for (const socket of this.connections) {
-          socket.destroy();
-        }
       }, config.SHUTDOWN_DELAY_MS);
     };
 
