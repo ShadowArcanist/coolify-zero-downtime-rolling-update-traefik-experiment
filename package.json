@@ -1,0 +1,12 @@
+{
+  "name": "zerodowntime-server",
+  "version": "1.0.0",
+  "description": "Simple server with graceful shutdown for zero-downtime deployments",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
